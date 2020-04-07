@@ -1,0 +1,61 @@
+.todo-list {
+ display: flex;
+ margin-left: auto;
+ margin-right:auto;
+ align-items: center;
+ justify-content:center;
+ width:500px;
+}
+.checkbox{
+ width:40px;
+ height:40px;
+ border-radius:50px;
+}
+.given-input{
+ color: #4d4d4d;
+ margin-left: auto;
+ margin-right: auto;
+ font-size: 24px;
+ border-radius: 2px;
+ border-color: #e1e1e1;
+ width: 400px;
+ display: flex;
+ justify-content: center;
+}
+.delete-button{
+ color:red;
+ font-size:28px;
+}
+.user-inputs {
+ color: #4d4d4d;
+ margin-left: auto;
+ margin-right: auto;
+ font-size: 24px;
+ border-radius: 2px;
+ border-color: #e1e1e1;
+ width: 400px;
+ display: flex;
+ justify-content: center;
+}
+.all,.active,.completed {
+ border: 1px solid white;
+ padding: 10px;
+ margin-right: 10px;
+}
+.all:hover{
+ border: 1px solid #F08080;
+}
+.active:hover{
+ border: 1px solid #F08080;
+}
+.completed:hover{
+ border: 1px solid #F08080;
+}
+.footer-section{
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ margin-left:auto;
+ margin-right:auto;
+ width:500px;
+}

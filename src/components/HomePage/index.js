@@ -19,6 +19,11 @@ function App() {
           Learn React
         </a>
         <Link to="/page-1">Page 1</Link>
+        <Link to="/todo-list">TodoList</Link>
+        <Link to="/carlist">CarsList</Link>
+        <Link to="/form-components">Form Components</Link>
+        <Link to="/CountriesDashboardApp">Countries List</Link>
+        <Link to="/emoji-game">Generate Emoji</Link>
       </header>
     </div>
   );

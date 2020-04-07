@@ -1,0 +1,66 @@
+Reusable components plan
+
+step:1 divide into components
+ -TodosApp
+    -User Input
+    -todolist
+        -Todo
+            /*-Checkbox 
+            -todoinput
+            -remove icon -*/
+    -todo footer
+         -active todo count
+         -Todofilter
+             -all button
+             -active button
+             -completed button
+             -clear completed button   
+             
+step:2 
+-props - Show data using min UI
+-write userinput,todolist,todofooter in seperate files.
+
+
+1) Think about the props of a particular component and write.
+ - {completed,show} = props
+     const completed = props.completed
+     const show = props.show
+     
+-In Todo function
+ -we can use many functions in a file
+ 
+step:3
+  What is changing in the UI? over a 10min of time
+  --Application state--
+   - UserInput
+  Eliminate -Active items count 
+  Eliminate -show clearCompleted button
+   -selected filter button border color
+   -Each Todochecked state
+   -Each Todo content
+   -Each Todofocused state
+   -listOfAllTodo
+  Eliminate -listOfActiveTodo
+  Eliminate -listOfCompletedTodo
+  Eliminate -showFooter
+--------
+  Minimum Application state
+    - UserInput
+    -selected filter button border color -In todo app
+    -listOfAllTodo -In todo app
+    -Each Todochecked state
+    -Each Todo content
+    -Each Todofocused state
+    
+--------   
+we can write state directly in class
+state ={
+    
+}
+synthetic event
+1)do not forget to write event as function argument
+
+
+STEP:4
+ - Rest of functionality
+ - Rest of methods

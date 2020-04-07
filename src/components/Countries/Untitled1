@@ -1,0 +1,43 @@
+step-1
+ - divide into components
+
+ -Dashboard
+     -state
+     - selectedTheme
+     -Header
+        -SelectTheme
+     -FilterBar
+        -CountrySearchFilter
+        -RegionFilter
+     -CountriesList
+        -CountryCard
+
+step-2:
+Minimum UI using props - Getting data from another place
+-Countries
+ -[5 Things,5 Things]
+-CountryCard
+ -5 Things
+-Header
+ -No props
+-CountrySearchFilter
+ -No props
+-RegionFilter
+ -Region
+
+
+step-3:
+Application state
+If a user is using app for 10 minutes.Check what is cahnging in UI
+-SelectTheme - light/dark
+-CountrySearchFilter
+-RegionFilter
+-Countries
+
+Eliminated states
+        -isLoading -Countries.length==0 - loading-true - else -false
+        -CardBackgroundColor
+        -CountrySearchFilter - PLACE HOLDER COLOR,Border-color,
+        -RegionFilter - Background-color
+        -Header -Background-color
+        -Dashboard -Background-color
