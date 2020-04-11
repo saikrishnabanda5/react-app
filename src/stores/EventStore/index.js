@@ -13,8 +13,8 @@ class EventStore {
     get eventCount(){
         return this.events.length
     }
-    onAddEvent(event){
-     console.log(event)
+    onAddEvent(event,i){
+     console.log(event,i)
     }
     onChangeEventName(value){
         console.log(value)

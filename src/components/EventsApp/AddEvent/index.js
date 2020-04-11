@@ -12,8 +12,7 @@ class AddEvent extends React.Component{
     // }
     
     onAddEvent=(event)=>{
-        // eventStore.onAddEvent()
-        eventStore.onAddEvent(this.eventName)
+        eventStore.onAddEvent(this.eventName,this.eventLocation)
     }
     onChangeEventName=(event)=>{
          this.eventName=event.target.value

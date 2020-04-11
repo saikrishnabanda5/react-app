@@ -19,7 +19,7 @@ class EventApp extends React.Component{
         return(
             <div style={{margin:"20px"}}>
                <div>
-                <AddEvent onAddEvent={eventStore.onAddEvent} />
+                <AddEvent  />
                 <Event />
                </div>
             </div>
@@ -28,3 +28,5 @@ class EventApp extends React.Component{
 }
 
 export {EventApp,Event};
+
+//onAddEvent={eventStore.onAddEvent}
