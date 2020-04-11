@@ -18,6 +18,10 @@ function App() {
         >
           Learn React
         </a>
+        <Link to="/example">Example</Link>
+        <Link to="/event-list">Event List</Link>
+        <Link to="/todo-app-mobx">TodoList Mobx</Link>
+        <Link to="/counter-app">Counter App</Link> 
         <Link to="/page-1">Page 1</Link>
         <Link to="/todo-list">TodoList</Link>
         <Link to="/carlist">CarsList</Link>

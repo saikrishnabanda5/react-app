@@ -1,0 +1,15 @@
+1)components
+  -Initial Add event
+  -Added event in new file
+  -Edit event
+  -Delete event
+  
+2)props
+  -event name
+  -event loaction
+
+
+3)state
+  -event name
+  -event location
+  

@@ -1,42 +1,7 @@
 /* global React ReactDOM*/
 import React from 'react';
 import {Link} from "react-router-dom";
-let rootEl = document.getElementById("root");
 let id,value,Index
-class Todo extends React.Component{
-  constructor(props){
-      super(props);
-  }
-  onCheckboxChange=(event)=>{
-      console.log(this.props)
-          let Index = event.target.id-1
-          if(event.target.checked){
-              event.target.nextElementSibling.style.textDecoration='line-through'
-         this.props.state.list[Index].checked = true;
-        //  this.props.state.listAll[Index].checked = true;
-          }
-          else{
-              event.target.nextElementSibling.style.textDecoration='none'
-        this.props.state.list[Index].checked = false;
-        // this.props.state.listAll[Index].checked = false;
-          }
-    
-  }
-  render(){
-      return(
-          <div className="todo-list" id={this.props.todoId}>
-  {this.props.checked==true &&<input type="checkbox" className="checkbox" checked={true} onChange={this.onCheckboxChange} id={this.props.todoId} />}
- {this.props.checked==false &&<input type="checkbox" className="checkbox" onChange={this.onCheckboxChange} id={this.props.todoId} />}
-  <input type="text" className ="given-input" defaultValue={this.props.value} id={this.props.todoId} />
-  <span onClick={this.props.removetodo} id={this.props.todoId} className="delete-button"> X</span>
-  </div>
-  )
-  }
-  
-}
-
-
-
 class TodoList extends React.Component{
     constructor(props){
         super(props);
@@ -49,10 +14,12 @@ class TodoList extends React.Component{
         if(event.keyCode===13){
             id= this.state.list.length+1
             if(event.target.value!==""){
+                console.log("value",event.target.value)
         this.setState({
             list:[...this.state.list,{value:event.target.value,id:id,checked:false}],
             listAll:[...this.state.list,{value:event.target.value,id:id,checked:false}]
             });
+            console.log("first-list",this.state.list)
         event.target.value ="";
         }
         }
@@ -139,25 +106,7 @@ class TodoList extends React.Component{
     }
     
 }
-const greeting = <h1>hello,Reat!</h1>
-console.log(typeof(greeting));
-export {TodoList,Todo};
-
-
-
-
-
-
-// we can write state directly in class
-// state ={
-    
-// }
-
-
-
-
-
-
+export {TodoList};
 
 
 
