@@ -13,8 +13,11 @@ class EventStore {
     get eventCount(){
         return this.events.length
     }
-    onAddEvent(event,i){
+    onAddEvent(nameValue,locationValue){
      console.log(event,i)
+     const eventModel = 
+     new EventModel({id:this.eventCount,name:nameValue,locations:locationValue});
+     this.events.push(eventModel);
     }
     onChangeEventName(value){
         console.log(value)
