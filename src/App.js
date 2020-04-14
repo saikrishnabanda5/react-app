@@ -8,7 +8,8 @@ import HomePage from "./components/HomePage";
 import Example from "./components/Example"; 
 import Page1 from "./components/Page1";
 import {CarsList,Car} from './components/CarsList/index1.js';
-//import {TodoList,Todo} from './components/todoList/todoList.js';
+import GridGame from './components/GridGameMobx/GridGame'
+import {TodoList,Todo} from './components/todoList/todoList.js';
 import {TodoList1} from './components/TodoListMobx/TodoList';
 import {Counter} from './components/CarsList/index.js';
 import {Greeting} from './components/Forms/Greetings.js';
@@ -55,6 +56,9 @@ class App extends React.Component{
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+          <Route path="/grid-game">
+            <GridGame />
+          </Route>
           <Route path="/example">
             <Example />
           </Route>

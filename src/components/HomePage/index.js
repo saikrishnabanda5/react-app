@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <Link to="/grid-game">Grid Game</Link>
         <Link to="/example">Example</Link>
         <Link to="/event-list">Event List</Link>
         <Link to="/todo-app-mobx">TodoList Mobx</Link>
