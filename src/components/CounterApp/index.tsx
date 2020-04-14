@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import countStore from '../../stores/CounterAppStore'
-import {TagH1,Increment,Input,Decrement,Bottom,CountApp} from './styledComponent.js';
+import {TagH1,Increment,Input,Decrement,Bottom,CountApp} from './styledComponent';
 @observer
 class CounterApp extends React.Component{
     onIncrement=()=>{

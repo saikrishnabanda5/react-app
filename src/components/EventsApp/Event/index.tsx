@@ -21,11 +21,11 @@ class Event extends React.Component{
         
     }
     render(){
-        const {name,locations} =this.props
+        // const {name,locations} =this.props
         console.log("prs",this.props)
         return(
             <div>
-                <div>Event Name:{name}</div>
+                <div>Event Name:</div>
                 <div>Event Location:</div>
                 <button>Edit</button>
                 <button>Delete</button>

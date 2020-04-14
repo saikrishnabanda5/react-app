@@ -5,15 +5,6 @@ import AddEvent from '../AddEvent'
 import Event from '../Event'
 @observer
 class EventApp extends React.Component{
-    // onAddEvent=(event)=>{
-    //     return <AddEvent />
-    //     console.log(event.target)
-    //   return eventStore.events.map((state)=>{
-    //       console.log(state);
-    //       <Event key={state} state={state}/>;
-    //     });
-    // }
-    
     
     render(){
         return(
@@ -27,6 +18,4 @@ class EventApp extends React.Component{
     }
 }
 
-export {EventApp,Event};
-
-//onAddEvent={eventStore.onAddEvent}
+export default EventApp;

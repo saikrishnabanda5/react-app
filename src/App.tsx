@@ -1,14 +1,14 @@
 import React from "react";
 // import {observable} from 'mobx';
+// import {configure} from 'mobx';
 import {observer} from 'mobx-react';
-import {configure} from 'mobx';
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
-
-import HomePage from "./components/HomePage";
-import Example from "./components/Example";
+  
+import HomePage from "./components/HomePage"; 
+import Example from "./components/Example"; 
 import Page1 from "./components/Page1";
 import {CarsList,Car} from './components/CarsList/index1.js';
-import {TodoList,Todo} from './components/todoList/todoList.js';
+//import {TodoList,Todo} from './components/todoList/todoList.js';
 import {TodoList1} from './components/TodoListMobx/TodoList';
 import {Counter} from './components/CarsList/index.js';
 import {Greeting} from './components/Forms/Greetings.js';
@@ -18,35 +18,27 @@ import {YourState} from './components/Forms/YourState.js';
 import {DisableOrEnable} from './components/Forms/Disable.js';
 import CountriesDashboardApp from './components/Countries/countryDashboard/CountriesDashboard.js';
 import {EmojiGame} from './components/Emojis/EmojiGame/EmojiGame.js';
-import {EventApp} from './components/EventsApp/EventApp';
 import CountryCard from './components/Countries/countryCard/CountryCard.js';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import './components/todoList/index.css';
 import './components/Countries/index.css';
 import CounterPage from './components/CounterPage';
 import CounterApp from './components/CounterApp';
-
+import EventApp from './components/EventsApp/EventApp';
 import themeStore from './ThemeStore';
 
 // configure({enforceActions:true});
 
 @observer
 class App extends React.Component{
-    // @observable selectedTheme="light"
-     
     getCurrentTheme=()=>{
     	return themeStore.selectedTheme;
     }
     
     setCurrentTheme=(theme)=>{  
-    	themeStore.setCurrentTheme(theme);
+    	themeStore.setCurrentTheme();
     }
-     
-    // state={
-    //   selectedTheme:"light",
-    //   themeType:"light",
-    // }
   onChangeTheme=()=>{
         if(this.getCurrentTheme()==="light"){
             this.setCurrentTheme('dark');
@@ -56,18 +48,6 @@ class App extends React.Component{
         }
     }
     
-  // onChangeEmojiTheme=()=>{
-  //       if(this.state.themeType=="light"){
-  //           this.setState({
-  //               themeType:"dark",
-  //           });
-  //       }
-  //       else{
-  //           this.setState({
-  //               themeType:"light",
-  //           });
-  //       }
-  //   }
   render(){
   return (
     <Router basename={process.env.PUBLIC_URL}>    
@@ -99,16 +79,14 @@ class App extends React.Component{
           <Route path="/CountriesDashboardApp">
             <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} onChangeTheme={this.onChangeTheme}/>
           </Route>
-          <Route path="/todo-list">
-            <TodoList />
-          </Route>
+          
           <Route path="/carlist">
             <CarsList />
           </Route>
           <Route path="/form-components">
             <FormComponents />
           </Route>
-          <Route path="/:id" children=<CountryCard selectedTheme={this.getCurrentTheme()} onChangeTheme={this.onChangeTheme}/>/>
+          <Route path="/:id" children = {<CountryCard selectedTheme={this.getCurrentTheme()} onChangeTheme={this.onChangeTheme}/>}/>
           <Route path="/">
             <HomePage />
           </Route>
@@ -177,3 +155,7 @@ function FormComponents() {
 }
 
 export default App;
+
+{/*<Route path="/todo-list">
+            <TodoList />
+          </Route>*/}

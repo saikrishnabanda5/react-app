@@ -1,8 +1,8 @@
 /* global React ReactDOM*/
-import React from 'react';
+import React from 'react'; 
 import {observer} from 'mobx-react';
-import {Todo} from '../Todo/index.js';
-import {Link} from "react-router-dom";
+import {Todo} from '../Todo';
+import {Link} from "react-router-dom"; 
 import todoStore from '../../../stores/TodoStore';
 let id,value,Index;
 @observer 
@@ -43,7 +43,7 @@ class TodoList1 extends React.Component{
         return valueObtained;
     }
     onAll=(event)=>{
-        const {onAll} = todoStore;
+        const {onAll} = todoStore;  
         onAll();
     }
     onActive=()=>{
@@ -58,7 +58,7 @@ class TodoList1 extends React.Component{
         const {onClearCompleted} = todoStore;
         onClearCompleted();
     }
-    footerSection=(event)=>{
+    footerSection=()=>{
         if(todoStore.list.length!=0)
         {
         return (<div className="footer-section">
