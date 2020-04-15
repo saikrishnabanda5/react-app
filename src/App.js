@@ -8,7 +8,7 @@ import HomePage from "./components/HomePage";
 import Example from "./components/Example"; 
 import Page1 from "./components/Page1";
 import {CarsList,Car} from './components/CarsList/index1.js';
-import GridGame from './components/GridGameMobx/GridGame'
+import GridMemoryGame from './components/GridGame/GridMemoryGame'
 import {TodoList,Todo} from './components/todoList/todoList.js';
 import {TodoList1} from './components/TodoListMobx/TodoList';
 import {Counter} from './components/CarsList/index.js';
@@ -57,7 +57,7 @@ class App extends React.Component{
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/grid-game">
-            <GridGame />
+            <GridMemoryGame />
           </Route>
           <Route path="/example">
             <Example />

@@ -1,6 +1,7 @@
 import {observable,action} from 'mobx';
 import todoStore from '../../../stores/TodoStore';
 class TodoModel{
+    
     @observable id
     @observable title
     @observable isChecked
