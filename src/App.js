@@ -1,6 +1,4 @@
 import React from "react";
-// import {observable} from 'mobx';
-// import {configure} from 'mobx';
 import {observer} from 'mobx-react';
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
   
@@ -60,7 +58,7 @@ class App extends React.Component{
             <GridMemoryGame />
           </Route>
           <Route path="/example">
-            <Example />
+            
           </Route>
           <Route path="/event-list">
             <EventApp />
@@ -163,3 +161,4 @@ export default App;
 {/*<Route path="/todo-list">
             <TodoList />
           </Route>*/}
+//<Example />
