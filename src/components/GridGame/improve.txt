@@ -1,0 +1,14 @@
+1)setTimeOut should not be used in store
+2)use componentDidMount to setTimeOut and clearTimeout in componentWillUnmount
+3)Object Destructuring ,game[game.level]
+4)There is no commented code
+5)setTimeOut inline
+6)order of importing-- ... - .. - .
+7)For a store this.init() and clearStore()  - language example
+(in typescript ! is used)
+8)reactions in component but not disposed
+9)No divs.ps - All are in styledComponent
+10)timeOut of not clicking
+11)shouldShowHiddenCells in GameField
+12)Peer review also involve checking out logic written by peers
+ 

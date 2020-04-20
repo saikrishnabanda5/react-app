@@ -6,11 +6,10 @@ import GameFieldStyle from '../GameField/styledComponent.js';
 @observer
 class GameField extends React.Component{
     onClickCell(){
+      const {gridSize,onCellClick,theme,level}=this.props;
        const cell= this.props.Cells.map((eachCell)=>{
            return <Cell key={eachCell.id} id={eachCell.id} isHidden={eachCell.isHidden} 
-           gridSize={this.props.gridSize} theme={this.props.theme}  level={this.props.level}
-           onClickCell={this.props.onCellClick} 
-           />;
+           gridSize={gridSize} theme={theme} level={level} onClickCell={onCellClick} />;
         });
         return cell;
     }

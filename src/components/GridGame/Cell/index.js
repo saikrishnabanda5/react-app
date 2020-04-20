@@ -8,7 +8,7 @@ import CellTheme from '../Cell/styledComponent.js';
 class Cell extends React.Component{
     @observable shouldShowHiddenCells
     @observable isClickedOnCell
-    timeOut=[]
+    timeOut=[] 
     
     constructor(props){
         super(props);
@@ -44,11 +44,12 @@ class Cell extends React.Component{
         this.timeOut.push(id);
     }
     render(){
+        const {level,isHidden,theme}=this.props;
         return(
-            <CellTheme onClick={this.onClickCell} isHidden={this.props.isHidden} 
+            <CellTheme onClick={this.onClickCell} isHidden={isHidden} 
                shouldShowHiddenCells={this.shouldShowHiddenCells} isClickedOnCell={this.isClickedOnCell} 
-               width={(cellDetails[this.props.level].gridWidth-[6*cellDetails[this.props.level].gridSize])/cellDetails[this.props.level].gridSize} 
-               disabled={this.shouldShowHiddenCells} theme={this.props.theme}>
+               width={(cellDetails[level].gridWidth-[6*cellDetails[level].gridSize])/cellDetails[level].gridSize} 
+               disabled={this.shouldShowHiddenCells} theme={theme}>
             </CellTheme> 
             );
     }

@@ -1,6 +1,6 @@
 import {observable,action} from 'mobx';
 class CellModel {
-    @observable id;
+    id;
     @observable isHidden;
     @observable isClickedOnCell
     constructor(id,isHidden,isClickedOnCell){

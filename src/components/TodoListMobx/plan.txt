@@ -64,3 +64,11 @@ synthetic event
 STEP:4
  - Rest of functionality
  - Rest of methods
+ 
+ 
+ 
+ 
+ Network calls--
+ 1)Triggering part in component
+ 2)Fun in stores
+  

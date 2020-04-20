@@ -78,9 +78,8 @@ class GameStore {
     }
     @action.bound
      onPlayAgainClick(){
-        this.topLevel=this.level;
-        this.level=0;
         this.gridSize=3;
+        this.setTopLevel();
         this.resetGame();
     }
     @action.bound

@@ -1,3 +1,4 @@
+/* global fetch */
 import React from 'react'
 import {observable,action,computed} from 'mobx';
 import TodoModel from '../../stores/model/TodoModel';
@@ -7,14 +8,22 @@ class TodoStore {
     @observable list
     @observable selectedFilter
     @observable itemsLeft
+    @observable loadingState
     constructor(){
         this.list=[];
         this.selectedFilter="All";
+        this.loadingState=true;
+    }
+    getTheResponse(jsonObject){
+        jsonObject.forEach((object=>{
+            const todoModel = new TodoModel({value:object.title,id:object.id,isChecked:object.isCompleted,});
+                 this.list.push(todoModel);
+        }));
     }
     @computed
     get todoCount(){
         return this.list.length+1;
-    }
+    } 
     onKeyDownValue(event){
         const todoModel = new TodoModel({value:event.target.value,id:this.todoCount,isChecked:false,});
        this.list.push(todoModel);

@@ -10,7 +10,6 @@ class Todo extends React.Component{
   }
   render(){
     const {stateVariable}=this.props
-    
     const {id,title,isChecked,onUpdateTodoTitle,onCompleteTodo} =stateVariable;
       return( 
   <div className="todo-list" >

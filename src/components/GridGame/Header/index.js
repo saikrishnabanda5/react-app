@@ -5,7 +5,7 @@ class Header extends React.Component{
     render(){
         const {theme,level,topLevel,onChangeSelectedTheme}=this.props;
         return(
-            <MainHeader width={cellDetails[this.props.level].gridWidth} >
+            <MainHeader width={cellDetails[level].gridWidth} >
                 <TopLevel>Top Level:{topLevel}</TopLevel>
                 <Middle >
                     <Level>Level: {level} </Level>

@@ -1,4 +1,5 @@
 /* global React ReactDOM*/
+/*global fetch */
 import React from 'react'; 
 import {observer} from 'mobx-react';
 import {Todo} from '../Todo';
@@ -7,6 +8,20 @@ import todoStore from '../../../stores/TodoStore';
 let id,value,Index;
 @observer 
 class TodoList1 extends React.Component{
+    async componentDidMount(){
+        try{
+        let response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        let jsonObject = await response.json();
+        console.log(jsonObject.catch())
+        setTimeout(() => {
+            todoStore.loadingState=false;
+             todoStore.getTheResponse(jsonObject);
+         },3000);
+        }
+        catch(e){
+            console.log(e);
+        }  
+    }
     onKeyDownValue=(event)=>{
         if(event.keyCode===13){
             if(event.target.value!==""){
@@ -36,10 +51,8 @@ class TodoList1 extends React.Component{
     renderListValues=()=>{
         const filteredList=this.getFilteredList()
         let valueObtained = filteredList.map((state,index)=> {
-            console.log("state",state)
-              return <Todo key={state.id} stateVariable={state} />;
+              return <Todo key={Math.random()} stateVariable={state} />;
         });
-        console.log("valueObtained",valueObtained)
         return valueObtained;
     }
     onAll=(event)=>{
@@ -69,9 +82,8 @@ class TodoList1 extends React.Component{
             <button className="completed" onClick={this.onClearCompleted}>Clear Completed </button>
         </div>)
     }
-}
+    }
     render(){
-        console.log("propsss",this.props)
         return (
         <div>
         <div style={{display:"flex",backgroundColor:"black",color:"white",width:"100%"}}>
@@ -82,8 +94,10 @@ class TodoList1 extends React.Component{
         </div>
         <div style={{margin:"20px"}}>
             <input onKeyDown={this.onKeyDownValue} placeholder="Write something" className="user-inputs" /> 
+            <div>{todoStore.loadingState? "Loading...":""}</div>
             <div>  {this.renderListValues()}</div>
             <div> {this.footerSection()}</div>
+            <div>{todoStore.list.length==0&&todoStore.loadingState==false?"No data found!":""}</div>
         </div>
         </div>
         );

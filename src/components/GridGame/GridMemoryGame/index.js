@@ -14,14 +14,12 @@ class GridMemoryGame extends React.Component{
                 <Header theme={themeStore.selectedTheme} level={gameStore.level}
                 topLevel={gameStore.topLevel} onChangeSelectedTheme={themeStore.onChangeSelectedTheme}/>
                 
-                {gameStore.level<7 ?<GameField onCellClick={gameStore.onCellClick} 
+                {gameStore.level<3 ?<GameField onCellClick={gameStore.onCellClick} 
                 Cells={gameStore.currentLevelGridCells} gridSize={gameStore.gridSize}
                 theme={themeStore.selectedTheme} level={gameStore.level}
-                />:""}
-                
-                {gameStore.level===7?<GameResult onPlayAgainClick={gameStore.onPlayAgainClick}
+                />:<GameResult onPlayAgainClick={gameStore.onPlayAgainClick}
                 level={gameStore.level} theme={themeStore.selectedTheme}
-                />:""}
+                />}
           </GridGame>)
     }
 }
