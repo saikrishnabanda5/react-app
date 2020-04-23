@@ -1,7 +1,6 @@
 import React from "react";
 import {observer} from 'mobx-react';
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
-  
 import HomePage from "./components/HomePage"; 
 import Example from "./components/Example"; 
 import Page1 from "./components/Page1";
@@ -18,6 +17,7 @@ import {DisableOrEnable} from './components/Forms/Disable.js';
 import CountriesDashboardApp from './components/Countries/countryDashboard/CountriesDashboard.js';
 import {EmojiGame} from './components/Emojis/EmojiGame/EmojiGame.js';
 import CountryCard from './components/Countries/countryCard/CountryCard.js';
+import UsersPage from './components/UsersPage';
 // import logo from './logo.svg';
 import './App.css';
 import './components/todoList/index.css';
@@ -27,6 +27,9 @@ import CounterApp from './components/CounterApp';
 import EventApp from './components/EventsApp/EventApp';
 import themeStore from './ThemeStore';
 
+
+import {Provider} from 'mobx-react'
+import stores from './stores'
 // configure({enforceActions:true});
 
 @observer
@@ -49,16 +52,15 @@ class App extends React.Component{
     
   render(){
   return (
+    <Provider {...stores} >
     <Router basename={process.env.PUBLIC_URL}>    
       <div>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+        <Route exact path='/users' component={UsersPage} />
           <Route path="/grid-game">
             <GridMemoryGame />
-          </Route>
-          <Route path="/example">
-            
           </Route>
           <Route path="/event-list">
             <EventApp />
@@ -95,6 +97,7 @@ class App extends React.Component{
         </Switch>
       </div>
     </Router>
+    </Provider>
   );
   
 

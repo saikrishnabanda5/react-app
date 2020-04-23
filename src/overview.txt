@@ -1,0 +1,13 @@
+stores
+    -index.js
+    -EventStore
+        -constructor()
+services
+-   EventService
+        -index.api.js
+        -index.fixture.js
+fixtures
+    -getEventsResponse.json
+    -update
+    -delete
+    -create

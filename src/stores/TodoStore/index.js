@@ -1,24 +1,43 @@
 /* global fetch */
 import React from 'react'
+import {reaction} from 'mobx';
 import {observable,action,computed} from 'mobx';
 import TodoModel from '../../stores/model/TodoModel';
-import {reaction} from 'mobx';
+import { API_INITIAL} from '@ib/api-constants';
+import {bindPromiseWithOnSuccess} from '@ib/mobx-promise';
+import TodoService from '../../services/TodoService/index.api';
 let id;
 class TodoStore {
     @observable list
     @observable selectedFilter
-    @observable itemsLeft
-    @observable loadingState
-    constructor(){
+    @observable getTodoListAPIStatus
+    @observable getTodoListAPIError
+    todoService
+    constructor(TodoService){
+        this.todoService=TodoService
+        this.init();
+    }
+    @action
+    init(){
         this.list=[];
         this.selectedFilter="All";
-        this.loadingState=true;
+        this.getTodoListAPIStatus=API_INITIAL;
+        this.getTodoListAPIError = null;
     }
-    getTheResponse(jsonObject){
-        jsonObject.forEach((object=>{
-            const todoModel = new TodoModel({value:object.title,id:object.id,isChecked:object.isCompleted,});
+    @action.bound
+    setTodoListResponse(todoResponse){
+        todoResponse.forEach((object=>{
+            const todoModel = new TodoModel({value:object.title,id:object.id,isChecked:object.completed,});
                  this.list.push(todoModel);
         }));
+    }
+    @action.bound
+    setGetTodoListAPIStatus(apiStatus){
+        this.getTodoListAPIStatus=apiStatus;
+    }
+    @action.bound
+    setGetTodoListAPIError(error){
+        this.getTodoListAPIError=error;
     }
     @computed
     get todoCount(){
@@ -60,53 +79,18 @@ class TodoStore {
     @computed
     get itemsLeftCount(){
       return  this.list.filter(todo=>todo.isChecked===false).length;
-    } 
+    }
+    @action.bound
+    getTodo(){
+        const todoPromise=this.todoService.getTodo();
+        return bindPromiseWithOnSuccess(todoPromise)
+               .to(this.setGetTodoListAPIStatus,this.setTodoListResponse)
+               .catch(this.setGetTodoListAPIError);
+    }
+    @action
+    clearStore(){
+        this.init();
+    }
 
 }
-const todoStore = new TodoStore();
-export default todoStore;
-
-
-
-
-
-
-
-
-/*
-
-// carsAddReaction =reaction(fun,fun)
-// data fun/tracking - returned value from this is sent to second fun as paramater
-// effect fun
-    
-todoReaction =reaction((index)=>{
-        const todo = this.list.filter((list)=>list.title.length>4)
-        return todo
-    },
-    (title)=>{
-        title.forEach((index)=>{
-            if(index.title.length>4){
-                // console.log("title",index.title)
-            }
-        })
-        
-    })
-    
-    // Dispose reaction
-    componentWillUnmount(){
-        this.todoReaction()
-    }
-    
-    
-    // if there is  a change  in observable variable it triggers
-    
-    
-    
-    // todoReaction =reaction(()=>this.list.map((list)=>list.title),
-    // (title)=>console.log("title",title))*/
-    
-    
-        
-    // TodoReaction = reaction(()=>this.title,
-    // (title)=>{console.log("todoTitle",title)})    
-    
+export default TodoStore;
