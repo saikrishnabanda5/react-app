@@ -1,5 +1,6 @@
 import React from "react";
 import {observer} from 'mobx-react';
+//HashRouter
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
 import HomePage from "./components/HomePage"; 
 import Example from "./components/Example"; 
@@ -18,6 +19,7 @@ import CountriesDashboardApp from './components/Countries/countryDashboard/Count
 import {EmojiGame} from './components/Emojis/EmojiGame/EmojiGame.js';
 import CountryCard from './components/Countries/countryCard/CountryCard.js';
 import UsersPage from './components/UsersPage';
+import routes from './Authentication/routes/SignInRoute/SignInRoute.js';
 // import logo from './logo.svg';
 import './App.css';
 import './components/todoList/index.css';
@@ -26,10 +28,12 @@ import CounterPage from './components/CounterPage';
 import CounterApp from './components/CounterApp';
 import EventApp from './components/EventsApp/EventApp';
 import themeStore from './ThemeStore';
-
+import LoginPage from './components/LoginPage'
 
 import {Provider} from 'mobx-react'
 import stores from './stores'
+import ECommerceStore from './ECommerce/stores/index.js'
+import AuthenticationStore from './Authentication/stores/index.js'
 // configure({enforceActions:true});
 
 @observer
@@ -52,12 +56,14 @@ class App extends React.Component{
     
   render(){
   return (
-    <Provider {...stores} >
+    <Provider {...stores} {...ECommerceStore} {...AuthenticationStore}>
     <Router basename={process.env.PUBLIC_URL}>    
       <div>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+        {routes}
+        <Route exact path="/login" component={LoginPage}/>
         <Route exact path='/users' component={UsersPage} />
           <Route path="/grid-game">
             <GridMemoryGame />
@@ -72,7 +78,7 @@ class App extends React.Component{
             <CounterApp />
           </Route>
           <Route path ="/counter-page">
-            <CounterPage />
+            {/*<CounterPage /> */}
           </Route>
           <Route exact path="/page-1"> 
             <Page1 />
@@ -83,7 +89,6 @@ class App extends React.Component{
           <Route path="/CountriesDashboardApp">
             <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} onChangeTheme={this.onChangeTheme}/>
           </Route>
-          
           <Route path="/carlist">
             <CarsList />
           </Route>

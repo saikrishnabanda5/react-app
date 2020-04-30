@@ -5,7 +5,7 @@ import {Header} from '../header/Header.js' ;
 import {SearchCountry} from '../searchCountry/searchCountry.js';
 import {SearchRegion} from '../filterCountry/filterCountry.js';
 import {HeaderPart,SelectTheme,BodyPart,SearchAndSelect,ShowCountries}
-from '../countryDashboard/styledComponents.js'
+from '../countryDashboard/styledComponents.js';
 class CountriesDashboardApp extends React.Component{
         state={
             Countries:'',
@@ -47,6 +47,7 @@ class CountriesDashboardApp extends React.Component{
     }
     
     selectARegion=(event)=>{
+        console.log(event.target.value)
         if(event.target.value!=="All"){
             this.setState({
                 region:event.target.value
@@ -108,7 +109,7 @@ class CountriesDashboardApp extends React.Component{
                 <BodyPart themeState = {selectedTheme}>
                 <SearchAndSelect>
                         <SearchCountry SearchCountryName={this.filterCountryByTextName} selectedTheme={selectedTheme}/>
-                        <SearchRegion FilterRegionName= {this.selectARegion} selectedTheme={selectedTheme}/>
+                        <SearchRegion FilterRegionName = {this.selectARegion} selectedTheme={selectedTheme}/>
                 </SearchAndSelect>
                 {this.state.Countries.length!==0 ? <ShowCountries>{this.getCountries()}</ShowCountries>:<div className="show-data"> No Data Found</div>}
                 </BodyPart> 

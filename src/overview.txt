@@ -11,3 +11,21 @@ fixtures
     -update
     -delete
     -create
+    
+29/04/2020
+
+Auth and ECommerce Inputs
+1)Protected Route in App.js
+2)Do history.push onSuccess callback for userSignInAPI fun in store
+Dont forget Asynchronous things-
+3)Add AuthUtils->isLoggedIn function
+4)Diff b/w Redirect & history.push
+5)use Redirect for next or previous page
+6)Diff b/w smartComponent -SignInRoute & SignInForm(or)SignInPage-reusable
+presentaional component
+7)Use export not default export -protectedRoute and privateRoute
+8)Debugging process
+**9)What does MobX react to?
+10)disable all clickable elements while reloading
+11)react lazyload nd slick
+12)User perspective

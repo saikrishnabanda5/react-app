@@ -1,10 +1,9 @@
-/* global fetch*/
 import {observable,action} from 'mobx';
 import { API_INITIAL, } from '@ib/api-constants';
 import {bindPromiseWithOnSuccess} from '@ib/mobx-promise';
 // import {create} from 'apisauce';
 // import {networkCallWithApisauce} from '../../utils/APIUtils';
-// import {apiMethods} from '../../constants/APIConstants';  
+// import {apiMethods} from '../../constants/APIConstants'; 
 import UserService from '../../services/UserService/index.api';
 class UserStore {
     @observable getUsersApiStatus
@@ -35,7 +34,6 @@ class UserStore {
     }
     @action.bound
     getUsersAPI(){
-        alert(12)
         const userPromise =this.userService.getUsersAPI();
         return bindPromiseWithOnSuccess(userPromise)
                 .to(this.setUsersApiStatus,this.setUsersApiResponse)

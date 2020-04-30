@@ -1,8 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import logo from "../../logo.svg";
+import {getCookie,ACCESS_TOKEN} from '../../Authentication/utils/StorageUtils'
+class HomePage extends React.Component {
+  
+  getSignInPage=()=>{
+      return(<Redirect to={{ pathname:"/signin" }}/>)
+  }
+  getProductsPage=()=>{
+    return(<Redirect to={{ pathname:"/products" }}/>)
+  }
 
-function App() {
+  render(){ 
+  // return getCookie(ACCESS_TOKEN)===undefined?this.getSignInPage():this.getProductsPage()
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +29,8 @@ function App() {
         >
           Learn React
         </a>
+        <Link to ="/signin">E-commerce</Link>
+        <Link to="/login">Login Page</Link>
         <Link to="/users">Users Page</Link>
         <Link to="/grid-game">Grid Game</Link>
         <Link to="/example">Example</Link>
@@ -34,5 +47,23 @@ function App() {
     </div>
   );
 }
-
-export default App;
+}
+export default HomePage;
+// gotoGridScreenIfLoggedIn=()=>{
+  //   return(
+  //     <Redirect
+  //     to={{
+  //       pathname:"/emoji-game"
+  //     }}
+  //     />
+  //     )
+  // }
+  
+  
+  // return(
+  //   getCookie(ACCESS_TOKEN)?"":""
+  //   )
+  
+  /// if(true){
+    //   return this.gotoGridScreenIfLoggedIn()
+    // }
