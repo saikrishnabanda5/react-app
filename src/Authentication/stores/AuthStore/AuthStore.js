@@ -4,9 +4,8 @@ import {setAccessToken,clearUserSession} from '../../utils/StorageUtils.js';
 import {bindPromiseWithOnSuccess} from '@ib/mobx-promise';
 import AuthService from '../../services/AuthService/AuthAPI.js';
 class AuthStore {
-    @observable getUserSignInAPIStatus
+    @observable getUserSignInAPIStatus       
     @observable getUserSignInAPIError
-    @observable users
     authAPIService
     constructor(AuthService){
         this.authAPIService=AuthService;
@@ -16,7 +15,6 @@ class AuthStore {
     init(){
         this.getUserSignInAPIStatus=API_INITIAL;
         this.getUserSignInAPIError=null;
-        this.users=[];
     }
     @action.bound
     setUserSignInAPIResponse(authResponse){

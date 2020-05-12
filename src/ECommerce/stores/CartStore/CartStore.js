@@ -43,15 +43,15 @@ class CartStore {
         this.productPrice=0;
         this.itemsInCart=0;
     }
-    @action.bound
-    getProductDetailsById(product){
-            const productItem = this.productStore.productList.filter((item)=>{
-                if(item.productId===product.productId){
-                    return item;
-                }
-            })
-            return productItem
-    }
+    // @action.bound
+    // getProductDetailsById(product){
+    //         const productItem = this.productStore.productList.filter((item)=>{
+    //             if(item.productId===product.productId){
+    //                 return item;
+    //             }
+    //         })
+    //         return productItem
+    // }
     
     @action
     clearStore(){

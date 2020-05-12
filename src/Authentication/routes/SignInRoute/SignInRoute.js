@@ -1,16 +1,59 @@
 import React from "react";
-import {Route} from "react-router-dom";
-import {
-  SIGN_IN_PATH,
-  PRODUCTS_PATH,
-} from "../../constants/RouteConstants";
+import {observer,inject} from 'mobx-react';
+import {observable} from 'mobx';
+import {withRouter} from "react-router-dom";
+import SignInPage from '../../components/SignInPage';
+@inject('authStore')
+@observer
+class SignInRoute extends React.Component {
+    @observable username
+    @observable password  
+    @observable errorMessage
+    constructor(props){
+        super(props);
+        this.username="";
+        this.password="";
+        this.errorMessage="";
+    }
+    onChangeUsername=(event)=>{
+        this.username=event.target.value;
+    }    
+    onChangePassword=(event)=>{
+        this.password=event.target.value;
+    }
+    onEnterKeyPress=(event)=>{
+        if(event.key==="Enter"){
+            this.onClickSignIn();
+        }
+    }
+    onClickSignIn=()=>{
+        const {history}=this.props;
+        if(this.password.length>0&&this.username.length>0){
+            this.props.authStore.userSignIn();         
+            history.replace('/products');
+        }
+        else if(this.username.length==0){
+            this.errorMessage="Please enter username";
+        }
+        else{
+            this.errorMessage="Please enter password";
+        }
+    }
+  render() {
+      const {getUserSignInAPIStatus}=this.props;
+    return (
+      <SignInPage
+      apiStatus={getUserSignInAPIStatus}
+      username={this.username}
+      password={this.password}
+      errorMessage={this.errorMessage}
+      onChangeUsername={this.onChangeUsername}
+      onChangePassword={this.onChangePassword}
+      onClickSignIn={this.onClickSignIn}
+      onEnterKeyPress={this.onEnterKeyPress}
+      />
+    );
+  }
+}
 
-import SignInPage from '../../components/SignInPage/index.js';
-import Products from   '../../../ECommerce/components/ProductsPage/index.js';
-
-const routes = [
-  <Route key={Math.random()}  path={SIGN_IN_PATH} component={SignInPage} />,
-  <Route key={Math.random()}  path={PRODUCTS_PATH} component={Products} />,
-];
-
-export default routes;
+export default withRouter(SignInRoute);

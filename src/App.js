@@ -19,7 +19,8 @@ import CountriesDashboardApp from './components/Countries/countryDashboard/Count
 import {EmojiGame} from './components/Emojis/EmojiGame/EmojiGame.js';
 import CountryCard from './components/Countries/countryCard/CountryCard.js';
 import UsersPage from './components/UsersPage';
-import routes from './Authentication/routes/SignInRoute/SignInRoute.js';
+import routes from './Authentication/routes';
+import productsRoutes from './ECommerce/routes'
 // import logo from './logo.svg';
 import './App.css';
 import './components/todoList/index.css';
@@ -29,6 +30,7 @@ import CounterApp from './components/CounterApp';
 import EventApp from './components/EventsApp/EventApp';
 import themeStore from './ThemeStore';
 import LoginPage from './components/LoginPage'
+import CounterParent from './components/Practice'
 
 import {Provider} from 'mobx-react'
 import stores from './stores'
@@ -62,7 +64,8 @@ class App extends React.Component{
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-        {routes}
+        {routes} {productsRoutes}
+        <Route exact path="/practice" component={CounterParent}/>
         <Route exact path="/login" component={LoginPage}/>
         <Route exact path='/users' component={UsersPage} />
           <Route path="/grid-game">

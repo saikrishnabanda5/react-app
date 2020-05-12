@@ -2,15 +2,15 @@ import {observable,action,computed} from 'mobx';
 import {API_INITIAL} from '@ib/api-constants';
 import {bindPromiseWithOnSuccess} from '@ib/mobx-promise';
 import ProductService from '../../services/ProductService/ProductAPI.api.js';
-import ProductModel from '../models/ProductModel'
+import ProductModel from '../models/ProductModel';
 class ProductStore {
     @observable getProductListAPIStatus
     @observable getProductListAPIError
     @observable productList
-    @observable newProductList
+    // @observable newProductList
     @observable sizeFilter
     @observable sortBy
-    newList
+    // newList
     productsAPIService
     constructor(ProductService){
         this.productsAPIService=ProductService;
@@ -21,9 +21,9 @@ class ProductStore {
         this.getProductListAPIStatus=API_INITIAL;
         this.getProductListAPIError=null;
         this.productList=[];
-        this.newProductList=[];
+        // this.newProductList=[];
         this.sizeFilter=[];
-        this.newList=[];
+        // this.newList=[];
         this.sortBy='SELECT';
     }
     @action.bound
@@ -31,14 +31,14 @@ class ProductStore {
         productResponse.forEach((object)=>{
             const productListModel = 
                 new ProductModel({productId:object.id,availableSizes:object.availableSizes.map((size)=>{
-                    return size
+                    return size;
                 }),currencyFormat:object.currencyFormat,currencyId:object.currencyId,
                 description:object.description,installmentsCount:object.installments,
                 isFreeShipping:object.isFreeShipping,price:object.price,
                 printStyle:object.style,title:object.title,imageURL:object.image
                 });
             this.productList.push(productListModel);
-            this.newProductList.push(productListModel)
+            // this.newProductList.push(productListModel);
         });
     }
     
@@ -60,18 +60,18 @@ class ProductStore {
         (item.availableSizes.filter((eachSize)=>
         this.sizeFilter.includes(eachSize)).length>0
         )
-    )
+    );
        if(this.sortBy==='ASCENDING'){
-            filteredProducts.sort((a,b)=>a.price>b.price)
+            filteredProducts.sort((a,b)=>a.price>b.price);
        }
        else if(this.sortBy==='DESCENDING'){
-           filteredProducts.sort((a,b)=>a.price<b.price)
+           filteredProducts.sort((a,b)=>a.price<b.price);
        }
-        return filteredProducts
+        return filteredProducts;
     }
     @computed
     get totalNoOfProductsDisplayed(){
-        return this.products.length
+        return this.products.length;
     }
     @action.bound
     onSelectSortBy(value){
@@ -79,12 +79,13 @@ class ProductStore {
     }
     @action.bound
     onSelectSize(value){
+        // console.log("valude",value);
         if(!this.sizeFilter.includes(value)){
-           this.sizeFilter.push(value)
-           console.log(this.sizeFilter)
+           this.sizeFilter.push(value);
         }
         else{
-           this.sizeFilter = this.sizeFilter.filter((size)=>(size!=value))
+            // console.log("this",this.sizeFilter);
+           this.sizeFilter = this.sizeFilter.filter((size)=>(size!=value));
         }
     }
     @action.bound

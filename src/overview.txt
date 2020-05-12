@@ -29,3 +29,7 @@ presentaional component
 10)disable all clickable elements while reloading
 11)react lazyload nd slick
 12)User perspective
+
+12/5/2020
+Common mistakes while writing the testcases
+1)
