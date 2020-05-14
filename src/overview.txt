@@ -32,4 +32,14 @@ presentaional component
 
 12/5/2020
 Common mistakes while writing the testcases
-1)
+1)      
+
+13/5/2020
+REACT ADVANCED
+1. refs-- curser,errorMessage curser
+inject is solving prop drilling
+2. CONTEX
+--- Fragment in React
+
+flexulator.com
+promisees

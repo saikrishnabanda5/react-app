@@ -3,9 +3,15 @@ import {observer,inject} from 'mobx-react';
 import {observable} from 'mobx';
 import {SignIn,Input,Details,ErrorMessage,SignInButton} from '../SignInPage/styledComponent.js';
 import {getAccessToken} from '../../utils/StorageUtils.js';
+const DisplayMessage=(props)=>{
+      return <div>{props.children()} </div>
+    }
 @observer
 class SignInPage extends React.Component{
-    
+    usernameRef = React.createRef()
+    componentDidMount(){
+      this.usernameRef.current.focus();
+    }
     render(){
           const {
           apiStatus,
@@ -21,8 +27,10 @@ class SignInPage extends React.Component{
         <form className="flex flex-col p-10 bg-white">
           <h2 className="font-bold mb-4">Sign in</h2>
           <input
+            
             type="text"
             value={username}
+            ref = {this.usernameRef}
             onChange={onChangeUsername}
             className="border border-gray-400 mb-3 w-48 h-10 pl-2 focus:outline-none rounded"
             placeholder="Username"
@@ -48,10 +56,13 @@ class SignInPage extends React.Component{
             </span>
           ) : null}
         </form>
+        <DisplayMessage>{(boolean)=><div> hello kittu </div>}</DisplayMessage>
       </div>
             );
     }
 }
+//{["k"]}
+//{()=><div> hello kittu </div>} use fun in props.children()
 
 export default SignInPage;
 

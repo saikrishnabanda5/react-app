@@ -1,5 +1,6 @@
 import React from "react";
 import {observer} from 'mobx-react';
+import {observable} from 'mobx'
 //HashRouter
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
 import HomePage from "./components/HomePage"; 
@@ -29,21 +30,24 @@ import CounterPage from './components/CounterPage';
 import CounterApp from './components/CounterApp';
 import EventApp from './components/EventsApp/EventApp';
 import themeStore from './ThemeStore';
-import LoginPage from './components/LoginPage'
-import CounterParent from './components/Practice'
-
-import {Provider} from 'mobx-react'
-import stores from './stores'
-import ECommerceStore from './ECommerce/stores/index.js'
-import AuthenticationStore from './Authentication/stores/index.js'
+import LoginPage from './components/LoginPage';
+import Apps from './components/Practice';
+import {ThemeContext} from './components/Practice/themeContext';
+import {Provider} from 'mobx-react';
+import stores from './stores';
+import ECommerceStore from './ECommerce/stores/index.js';
+import AuthenticationStore from './Authentication/stores/index.js';
 // configure({enforceActions:true});
 
 @observer
 class App extends React.Component{
+  @observable ecommerceAppTheme = "dark"
+  onChangeEcommerceTheme=()=>{
+    this.ecommerceAppTheme = "light";
+  }
     getCurrentTheme=()=>{
     	return themeStore.selectedTheme;
     }
-    
     setCurrentTheme=(theme)=>{  
     	themeStore.setCurrentTheme();
     }
@@ -65,7 +69,9 @@ class App extends React.Component{
             renders the first one that matches the current URL. */}
         <Switch>
         {routes} {productsRoutes}
-        <Route exact path="/practice" component={CounterParent}/>
+        {/*<ThemeContext.Provider value={this.state}>*/}
+          <Route exact path="/practice" component={Apps}/>
+        {/*</ThemeContext.Provider>*/}
         <Route exact path="/login" component={LoginPage}/>
         <Route exact path='/users' component={UsersPage} />
           <Route path="/grid-game">

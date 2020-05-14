@@ -1,26 +1,67 @@
-// import React from "react";
-// import { render } from "react-dom";
-// import { observer } from "mobx-react";
-// import { observable, action } from "mobx";
+import React from 'react'
+import {ThemeContext} from './themeContext';
 
-// class CounterParent extends React.Component {
-//   @observable parentCounter = 0;
- 
-//   @action.bound
-//   onParentCounterIncrement() {
-//     this.parentCounter += 1;
-//   }
+//const color=React.createContext('pink');
 
+// class ToggleColor extends React.Component {
+  
+//   static reqColor = color;
 //   render() {
-//     console.log("render CounterParent");
-//     return (
-//       <CounterChild
-//         onParentCounterIncrement={this.onParentCounterIncrement}
-//         parentCounter={this.parentCounter}
-//       />
-//     );
+//     alert('came');
+//     return <button theme={this.context} ></button>;
 //   }
 // }
+
+
+class CounterParent extends React.Component {
+  render() {
+    return (
+    <ThemeContext.Consumer>
+      {({theme,toggleTheme})=>(
+          <button style={{backgroundColor:theme,margin:"30px",padding:"15px",color:"white"}}
+          onClick={toggleTheme}>
+          Toggle themee
+          </button>
+      )}
+    </ThemeContext.Consumer>
+    );     
+  }
+}
+
+class Apps extends React.Component {
+  
+  constructor(props) {
+    super(props);
+          this.state={
+            height:"400px",
+            width:"700px",
+            theme:"dark",
+            toggleTheme:this.toggleTheme,
+          };
+    };
+     toggleTheme=()=>{
+            this.setState(state=>({
+              theme:state.theme==="red"?"blue":"red"
+            }));
+          };
+          
+  render() {
+    return (
+      <ThemeContext.Provider value={this.state}>
+        <Content />
+      </ThemeContext.Provider>
+    );
+  }
+}
+
+function Content() {
+  return (
+    <div>
+      <CounterParent />
+    </div>
+  );
+}
+export default Apps;
 
 // @observer
 // class CounterChild extends React.Component {
@@ -188,57 +229,57 @@
 
 // export default CounterParent
 
-import React from "react";
-import { render } from "react-dom";
-import { observer } from "mobx-react";
-import { observable, action } from "mobx";
+// import React from "react";
+// import { render } from "react-dom";
+// import { observer } from "mobx-react";
+// import { observable, action } from "mobx";
 
-@observer
-class CounterParent extends React.Component {
-  @observable parentCounter = 12;
+// @observer
+// class CounterParent extends React.Component {
+//   @observable parentCounter = 12;
 
-  @action.bound
-  onParentCounterUpdate() {
-    this.parentCounter += 2;
-  }
+//   @action.bound
+//   onParentCounterUpdate() {
+//     this.parentCounter += 2;
+//   }
 
-  render() {
-    console.log("render CounterParent");
-    return (
-      <CounterChild
-        onParentCounterUpdate={this.onParentCounterUpdate}
-        parentCounter={this.parentCounter}
-      />
-    );
-  }
-}
+//   render() {
+//     console.log("render CounterParent");
+//     return (
+//       <CounterChild
+//         onParentCounterUpdate={this.onParentCounterUpdate}
+//         parentCounter={this.parentCounter}
+//       />
+//     );
+//   }
+// }
 
-@observer
-class CounterChild extends React.Component {
-  @observable childCounter1 = 301;
-  @observable childCounter2 = 14;
+// @observer
+// class CounterChild extends React.Component {
+//   @observable childCounter1 = 301;
+//   @observable childCounter2 = 14;
 
-  @action.bound
-  onUpdate() {
-    const { onParentCounterUpdate } = this.props;
-    onParentCounterUpdate();
-    this.childCounter1 += 2;
-    this.childCounter2 -= 2;
-  }
+//   @action.bound
+//   onUpdate() {
+//     const { onParentCounterUpdate } = this.props;
+//     onParentCounterUpdate();
+//     this.childCounter1 += 2;
+//     this.childCounter2 -= 2;
+//   }
 
-  render() {
-    console.log("render CounterChild");
-    const { parentCounter } = this.props; 
+//   render() {
+//     console.log("render CounterChild");
+//     const { parentCounter } = this.props; 
 
-    return (
-      <div>
-        <button onClick={this.onUpdate}>Update count</button>
-        <div>parentCounter: {parentCounter}</div>
-        <div>childCounter1: {this.childCounter1}</div>
-        <div>childCounter2: {this.childCounter2}</div>
-      </div>
-    );
-  }
-}
+//     return (
+//       <div>
+//         <button onClick={this.onUpdate}>Update count</button>
+//         <div>parentCounter: {parentCounter}</div>
+//         <div>childCounter1: {this.childCounter1}</div>
+//         <div>childCounter2: {this.childCounter2}</div>
+//       </div>
+//     );
+//   }
+// }
 
- export default CounterParent;
+// export default CounterParent;

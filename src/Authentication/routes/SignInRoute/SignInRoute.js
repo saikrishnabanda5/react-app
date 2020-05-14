@@ -9,6 +9,7 @@ class SignInRoute extends React.Component {
     @observable username
     @observable password  
     @observable errorMessage
+    signInFormRef = React.createRef()
     constructor(props){
         super(props);
         this.username="";
@@ -57,3 +58,4 @@ class SignInRoute extends React.Component {
 }
 
 export default withRouter(SignInRoute);
+//ref ={this.signInFormRef}
