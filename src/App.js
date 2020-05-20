@@ -33,10 +33,12 @@ import themeStore from './ThemeStore';
 import LoginPage from './components/LoginPage';
 import Apps from './components/Practice';
 import {ThemeContext} from './components/Practice/themeContext';
+import MockCounter from './components/myPractice';
 import {Provider} from 'mobx-react';
 import stores from './stores';
 import ECommerceStore from './ECommerce/stores/index.js';
 import AuthenticationStore from './Authentication/stores/index.js';
+import HocUsage from './common'
 // configure({enforceActions:true});
 
 @observer
@@ -69,6 +71,12 @@ class App extends React.Component{
             renders the first one that matches the current URL. */}
         <Switch>
         {routes} {productsRoutes}
+        <Route exact path="/hoc-usage" component={HocUsage}/>
+        <Route path="/CountriesDashboardApp">
+              {/*<WithCountries renderSuccessUI/>*/}
+            <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} onChangeTheme={this.onChangeTheme}/>
+          </Route>
+        <Route path="/myPractice" component={MockCounter}/>
         {/*<ThemeContext.Provider value={this.state}>*/}
           <Route exact path="/practice" component={Apps}/>
         {/*</ThemeContext.Provider>*/}
@@ -95,9 +103,7 @@ class App extends React.Component{
           <Route path="/emoji-game">
             <EmojiGame selectedTheme={this.getCurrentTheme()} onChangeEmojiTheme={this.onChangeTheme} />
           </Route>
-          <Route path="/CountriesDashboardApp">
-            <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} onChangeTheme={this.onChangeTheme}/>
-          </Route>
+          
           <Route path="/carlist">
             <CarsList />
           </Route>

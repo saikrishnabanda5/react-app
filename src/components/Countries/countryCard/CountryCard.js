@@ -3,37 +3,34 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {Header} from '../header/Header.js' ;
 import {CountryBorders} from '../countryBorder/CountryBorders.js';
+import WithCountries from '../../hocs/withCountries'
 class CountryCard extends React.Component{
     state={
         country:this.props.match.params.id,
         Countries:"",
         individualCountry:""
-    } 
-    async  componentDidMount() {
-    let response = await fetch(`https://restcountries.eu/rest/v2/all`);
-      let json = await response.json();
-       this.setState({ 
-            Countries: json,
-        });
-        this.state.Countries.map((country)=>{
+    }
+    getEachCountry=()=>{
+          this.props.Countries.map((country)=>{
             if(country.name===this.state.country){
                  this.setState({
                      individualCountry:country
                  });
             }
-    });
+        });
     }
     onClickBorders=(event)=>{
-        const details = this.state.Countries.map((countryCode)=>{
+        const details = this.props.Countries.map((countryCode)=>{
       if(event.target.value==countryCode.alpha3Code){
           this.setState({
               individualCountry:countryCode
           });
-        }  
+        }   
     });
     }
     
     CountryDetails=()=>{
+        
         const {individualCountry}=this.state;
         const {selectedTheme}=this.props;
                     return(
@@ -56,7 +53,7 @@ class CountryCard extends React.Component{
                         </div>
                     </div>
                      <div><strong>Border Countries:</strong> 
-        {individualCountry.borders!=="" ?<CountryBorders countryBorders= {individualCountry.borders} selectedTheme={selectedTheme} onClickBorders={this.onClickBorders} Countries={this.state.Countries}/>:""}
+        {individualCountry.borders!=="" ?<CountryBorders countryBorders= {individualCountry.borders} selectedTheme={selectedTheme} onClickBorders={this.onClickBorders} Countries={this.props.Countries}/>:""}
                      </div> 
                 </div>
                 </div>
@@ -67,6 +64,9 @@ class CountryCard extends React.Component{
         history.goBack();
     }
     render(event){
+        if(this.props.Countries!==""&&this.state.individualCountry===""){
+             this.getEachCountry()
+        }
         const {selectedTheme,onChangeTheme}=this.props
         return(<div className= {selectedTheme==="light"? "light-theme ":"dark-theme"}>
                 <div className="flex justify-between items-center mt-5 mb-1 p-5  shadow-xl">
@@ -85,4 +85,4 @@ class CountryCard extends React.Component{
 }
 
 
-export default withRouter(CountryCard);
+export default withRouter(WithCountries(CountryCard));

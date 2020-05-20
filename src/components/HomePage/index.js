@@ -29,6 +29,9 @@ class HomePage extends React.Component {
         >
           Learn React
         </a>
+        <Link to="/hoc-usage">Hoc Usage</Link>
+        <Link to="/CountriesDashboardApp">Countries List</Link>
+        <Link to ="/myPractice">my Practice</Link>
         <Link to ="/practice">Practise</Link>
         <Link to ="/signin">E-commerce</Link>
         <Link to="/login">Login Page</Link>
@@ -42,7 +45,6 @@ class HomePage extends React.Component {
         <Link to="/todo-list">TodoList</Link>
         <Link to="/carlist">CarsList</Link>
         <Link to="/form-components">Form Components</Link>
-        <Link to="/CountriesDashboardApp">Countries List</Link>
         <Link to="/emoji-game">Generate Emoji</Link>
       </header>
     </div>

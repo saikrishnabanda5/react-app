@@ -43,3 +43,19 @@ inject is solving prop drilling
 
 flexulator.com
 promisees
+
+15/5/20
+1. HOC
+2.problems with HOC
+  -we dont know which component gives what prop 
+  -naming collisions   
+3.To overcome this we got render props.we have used this in LoadingWrapperWithFailure
+using render props -renderSuccessUI
+
+20/5/20
+1)While changing the font-size in emoji game we have to play the game every time or
+we have to comment some code - this is the problem
+2)In E-Commerce page  we have to check the loading
+3)style guide regarding  a project - stylings in a component
+4)Before the project we will decide the colors,fonts,typos,buttons,forms etc and place it in a story book
+--- For this we will use story book ---

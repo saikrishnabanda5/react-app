@@ -6,23 +6,26 @@ import {SearchCountry} from '../searchCountry/searchCountry.js';
 import {SearchRegion} from '../filterCountry/filterCountry.js';
 import {HeaderPart,SelectTheme,BodyPart,SearchAndSelect,ShowCountries}
 from '../countryDashboard/styledComponents.js';
+import WithCountries from '../../hocs/withCountries';
 class CountriesDashboardApp extends React.Component{
-        state={
-            Countries:'',
+    constructor(props){
+        super(props);
+        this.state={
+            Countries:[],
             duplicateCountries: "",
             search:"",
             region:"All",
       }
-    async  componentDidMount() {
-    let response = await fetch(`https://restcountries.eu/rest/v2/all`);
-      let json = await response.json();
-        this.setState({ 
-            Countries: json,
-            duplicateCountries: json,
-        });
+    }
+    getDuplicateCountries=()=>{
+        if(this.props.Countries!=""){
+            this.setState({ 
+                duplicateCountries: this.props.Countries
+            });
+        }
     }
     navigateToCountryDetailsPage=(event)=>{
-        this.state.Countries.map((country)=>{
+        this.props.Countries.map((country)=>{
             if(country.name==event.currentTarget.id){
                 let {history} = this.props;
                 history.push(country.name);
@@ -30,7 +33,7 @@ class CountriesDashboardApp extends React.Component{
         });
     }
     getCountries=()=>{
-        const countries= this.state.Countries.map((country)=>{
+        const countries= this.props.Countries.map((country)=>{
            return(
                <div className="m-5 w-48 shadow-2xl" id={country.name}  onClick={this.navigateToCountryDetailsPage} >
                <img className="w-52 h-56 object-cover mb-auto"  src={country.flag} />
@@ -47,7 +50,6 @@ class CountriesDashboardApp extends React.Component{
     }
     
     selectARegion=(event)=>{
-        console.log(event.target.value)
         if(event.target.value!=="All"){
             this.setState({
                 region:event.target.value
@@ -82,7 +84,7 @@ class CountriesDashboardApp extends React.Component{
    
     
     filterCountryByTextName=(event)=>{
-        if(event.keyCode==13){
+        if(event.keyCode===13){
             let searchValue = event.target.value;
             let searchCountry = this.state.duplicateCountries.filter((country)=>{
                 if(country.region==this.state.region){
@@ -99,6 +101,10 @@ class CountriesDashboardApp extends React.Component{
         }
     }
     render(){
+        console.log(this.props.Countries)
+        if(this.props.Countries!=""&&this.state.duplicateCountries===""){
+            this.getDuplicateCountries()
+        }
          const {selectedTheme,onChangeTheme}=this.props;
         return(
             <SelectTheme themeState = {this.props.selectedTheme}>
@@ -108,13 +114,17 @@ class CountriesDashboardApp extends React.Component{
                 </HeaderPart>
                 <BodyPart themeState = {selectedTheme}>
                 <SearchAndSelect>
-                        <SearchCountry SearchCountryName={this.filterCountryByTextName} selectedTheme={selectedTheme}/>
-                        <SearchRegion FilterRegionName = {this.selectARegion} selectedTheme={selectedTheme}/>
+                        {this.props.Countries!==undefined?<SearchCountry SearchCountryName={this.filterCountryByTextName} selectedTheme={selectedTheme}/>:null}
+                        {this.props.Countries!==undefined?<SearchRegion FilterRegionName = {this.selectARegion} selectedTheme={selectedTheme}/>:null}
                 </SearchAndSelect>
-                {this.state.Countries.length!==0 ? <ShowCountries>{this.getCountries()}</ShowCountries>:<div className="show-data"> No Data Found</div>}
+                {this.props.Countries.length!==0 ? <ShowCountries>{this.getCountries()}</ShowCountries>:<div className="show-data"> No Data Found</div>}
                 </BodyPart> 
             </SelectTheme>
             );
     }
 }
-export default withRouter(CountriesDashboardApp);
+// export default withRouter(CountriesDashboardApp);
+export default (WithCountries(withRouter(CountriesDashboardApp)));
+
+// using render props
+//  - 
