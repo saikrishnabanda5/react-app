@@ -7,10 +7,10 @@ class ProductStore {
     @observable getProductListAPIStatus
     @observable getProductListAPIError
     @observable productList
-    // @observable newProductList
     @observable sizeFilter
     @observable sortBy
-    // newList
+    @observable limit
+    @observable offset
     productsAPIService
     constructor(ProductService){
         this.productsAPIService=ProductService;
@@ -21,14 +21,14 @@ class ProductStore {
         this.getProductListAPIStatus=API_INITIAL;
         this.getProductListAPIError=null;
         this.productList=[];
-        // this.newProductList=[];
         this.sizeFilter=[];
-        // this.newList=[];
         this.sortBy='SELECT';
+        this.limit=4;
+        this.offset=13;
     }
     @action.bound
     setProductListResponse(productResponse){
-        productResponse.forEach((object)=>{
+        productResponse.products.forEach((object)=>{
             const productListModel = 
                 new ProductModel({productId:object.id,availableSizes:object.availableSizes.map((size)=>{
                     return size;
@@ -38,7 +38,6 @@ class ProductStore {
                 printStyle:object.style,title:object.title,imageURL:object.image
                 });
             this.productList.push(productListModel);
-            // this.newProductList.push(productListModel);
         });
     }
     
@@ -79,18 +78,16 @@ class ProductStore {
     }
     @action.bound
     onSelectSize(value){
-        // console.log("valude",value);
         if(!this.sizeFilter.includes(value)){
            this.sizeFilter.push(value);
         }
         else{
-            // console.log("this",this.sizeFilter);
            this.sizeFilter = this.sizeFilter.filter((size)=>(size!=value));
         }
     }
     @action.bound
     getProductList(){
-        const AuthenticationPromise =this.productsAPIService.getProductsAPI();
+        const AuthenticationPromise =this.productsAPIService.getProductsAPI(this.limit,this.offset);
         return bindPromiseWithOnSuccess(AuthenticationPromise)
                 .to(this.setGetProductListAPIStatus,this.setProductListResponse)
                 .catch(this.setGetProductListAPIError);

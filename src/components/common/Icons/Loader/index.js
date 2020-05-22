@@ -4,7 +4,7 @@ import SvgFile from "./SvgFile";
 
 class Loader extends Component {
   render() {
-    return <SvgComponent renderComponent={SvgFile} {...this.props} />;
+    return <SvgComponent renderComponent={SvgFile} fill={this.props.color} {...this.props} />;
   }
 }
 

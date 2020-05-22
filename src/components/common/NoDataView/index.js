@@ -4,9 +4,10 @@ import { NoDataViewContainer, NoDataViewText } from "./styledComponents";
 
 class NoDataView extends React.Component {
   render() {
+    const {text,color}=this.props;
     return (
       <NoDataViewContainer>
-        <NoDataViewText>No data found!</NoDataViewText>
+        <NoDataViewText color={color}>{text}</NoDataViewText>
       </NoDataViewContainer>
     );
   }

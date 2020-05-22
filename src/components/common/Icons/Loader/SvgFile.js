@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
 class Loader extends Component {
+  
   static defaultProps = {
     width: 100,
     height: 100,
-    fill: "#00BFFF"
+    fill: '#f2a109'
   };
 
   render() {

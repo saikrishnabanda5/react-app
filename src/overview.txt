@@ -59,3 +59,8 @@ we have to comment some code - this is the problem
 3)style guide regarding  a project - stylings in a component
 4)Before the project we will decide the colors,fonts,typos,buttons,forms etc and place it in a story book
 --- For this we will use story book ---
+
+22/5/20
+1)Query parameters - for filterings - ?limit=2&offset=0
+2)path parameters or URL parameters- for pointng a country in  a list of countries
+3)editor.swagger.io
