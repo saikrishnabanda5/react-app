@@ -11,6 +11,7 @@ class ProductStore {
     @observable sortBy
     @observable limit
     @observable offset
+    @observable total
     productsAPIService
     constructor(ProductService){
         this.productsAPIService=ProductService;
@@ -23,11 +24,13 @@ class ProductStore {
         this.productList=[];
         this.sizeFilter=[];
         this.sortBy='SELECT';
-        this.limit=4;
-        this.offset=13;
+        this.limit=1;
+        this.offset=10;
+        this.total=[];
     }
     @action.bound
     setProductListResponse(productResponse){
+        this.total=productResponse.total;
         productResponse.products.forEach((object)=>{
             const productListModel = 
                 new ProductModel({productId:object.id,availableSizes:object.availableSizes.map((size)=>{
@@ -71,6 +74,14 @@ class ProductStore {
     @computed
     get totalNoOfProductsDisplayed(){
         return this.products.length;
+    }
+    @action.bound
+    onClickLeftArrow(){
+        alert()
+    }
+    @action.bound
+    onClickRightArrow(){
+        
     }
     @action.bound
     onSelectSortBy(value){

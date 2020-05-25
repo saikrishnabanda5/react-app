@@ -32,7 +32,7 @@ presentaional component
 
 12/5/2020
 Common mistakes while writing the testcases
-1)      
+1)
 
 13/5/2020
 REACT ADVANCED
@@ -64,3 +64,4 @@ we have to comment some code - this is the problem
 1)Query parameters - for filterings - ?limit=2&offset=0
 2)path parameters or URL parameters- for pointng a country in  a list of countries
 3)editor.swagger.io
+

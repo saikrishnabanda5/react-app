@@ -4,9 +4,7 @@ import ProductSort from '../ProductSort'
 import {HeaderStyle,Count} from '../Header/styledComponent.js'
 @observer
 class Header extends React.Component{
-    render(){
-        console.log("header",this.props)
-        return(
+    render(){        return(
             <HeaderStyle>
               <Count>{this.props.productCount}Product(s) found.</Count>
              <div> <ProductSort onSelectSortBy={this.props.onSelectSortBy}/></div>

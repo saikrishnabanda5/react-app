@@ -56,7 +56,7 @@ class SignInPage extends React.Component{
             </span>
           ) : null}
         </form>
-        <DisplayMessage>{(boolean)=><div> hello kittu </div>}</DisplayMessage>
+        <DisplayMessage>{(boolean)=><div> h </div>}</DisplayMessage>
       </div>
             );
     }

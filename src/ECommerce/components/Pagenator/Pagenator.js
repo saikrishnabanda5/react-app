@@ -5,14 +5,16 @@ import {Pages,LeftArrow,CurrentPageNumber,TotalNumberOfPages,RightArrow} from '.
 @observer
 class Pagenator extends React.Component{
     render(){
+        console.log(this.props)
+        const {limit,offset,productList,onClickLeftArrow,onClickRightArrow} =this.props;
         return(
-            <Pages>
-                <LeftArrow>
+            <Pages >
+                <LeftArrow onClick={onClickLeftArrow}>
                     <AiOutlineArrowLeft/>
                 </LeftArrow>
                 <CurrentPageNumber>3</CurrentPageNumber>
                 <TotalNumberOfPages>7</TotalNumberOfPages>
-                <RightArrow>
+                <RightArrow onClick={onClickRightArrow}>
                     <AiOutlineArrowRight/>
                 </RightArrow>
             </Pages>

@@ -22,6 +22,7 @@ import CountryCard from './components/Countries/countryCard/CountryCard.js';
 import UsersPage from './components/UsersPage';
 import routes from './Authentication/routes';
 import productsRoutes from './ECommerce/routes'
+import ProductsPage from './ECommerce/components/ProductsPage'
 // import logo from './logo.svg';
 import './App.css';
 import './components/todoList/index.css';
@@ -71,11 +72,12 @@ class App extends React.Component{
             renders the first one that matches the current URL. */}
         <Switch>
         {routes} {productsRoutes}
+        <Route path="/myProducts" component={ProductsPage}/>
         <Route exact path="/hoc-usage" component={HocUsage}/>
         <Route path="/CountriesDashboardApp">
               {/*<WithCountries renderSuccessUI/>*/}
             <CountriesDashboardApp selectedTheme={this.getCurrentTheme()} onChangeTheme={this.onChangeTheme}/>
-          </Route>
+        </Route>
         <Route path="/myPractice" component={MockCounter}/>
         {/*<ThemeContext.Provider value={this.state}>*/}
           <Route exact path="/practice" component={Apps}/>

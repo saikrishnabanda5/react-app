@@ -27,4 +27,13 @@ const BodyLeftPart = styled.div `${tw
 ``};
 width:25%
 `
-export {SignOut,HeaderPart,CartLogo,Top,ECommerce,Body,BodyRightPart,BodyLeftPart}
+
+const PageAlignment = styled.div `${tw 
+``};
+position:fixed;
+bottom:40px;
+right:10px;
+`
+
+export {SignOut,HeaderPart,CartLogo,Top,ECommerce,
+Body,BodyRightPart,BodyLeftPart,PageAlignment}

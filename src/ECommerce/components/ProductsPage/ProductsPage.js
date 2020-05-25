@@ -3,17 +3,19 @@ import {observer} from 'mobx-react';
 import SizeFilter from '../SizeFilter';
 import Header from '../Header';
 import ProductList from '../ProductList';
-import ProductCart from '../Cart/ProductCart'
+import ProductCart from '../Cart/ProductCart';
+import Pagenator from '../Pagenator';
 import LoadingWrapperWithFailure from '../../../components/common/LoadingWrapperWithFailure';
-import {SignOut,HeaderPart,Top,ECommerce,Body,BodyRightPart,BodyLeftPart} from '../ProductsPage/styledComponent.js'
-
+import {SignOut,HeaderPart,Top,ECommerce,
+Body,BodyRightPart,BodyLeftPart,PageAlignment} from '../ProductsPage/styledComponent.js';
+ 
 @observer
 class ProductsPage extends React.Component{
     render(){
-        const {onClickSignOut,
+        const {onClickSignOut,         
         getProductStore,getCartStore,
-        doNetworkCalls,renderUsersList} = this.props
-        const {getProductListAPIError,getProductListAPIStatus}=this.props.getProductStore
+        doNetworkCalls,renderUsersList} = this.props;
+        const {getProductListAPIError,getProductListAPIStatus}=this.props.getProductStore;
         return(
             <ECommerce>
                 <Top>
@@ -38,6 +40,12 @@ class ProductsPage extends React.Component{
                     />
                     <ProductList productList={getProductStore.products} 
                     onClickAddToCart={getProductStore.onClickAddToCart}/>
+                    <PageAlignment>
+                        <Pagenator limit={getProductStore.limit} offset={getProductStore.offset}
+                        productList={getProductStore.productList} onClickRightArrow={getProductStore.onClickRightArrow}
+                        onClickLeftArrow={getProductStore.onClickLeftArrow}
+                        total={getProductStore.total}/>
+                    </PageAlignment>
                 </BodyRightPart>
             </Body>
             </ECommerce>
